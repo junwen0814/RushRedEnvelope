@@ -1,0 +1,28 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">//设置是否循环播放，默认的是循环播放，false为只播放一次
+    <item
+        android:drawable="@drawable/caishen1"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/caishen2"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/caishen3"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/caishen4"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/caishen5"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/caishen6"
+        android:duration="100" />
+
+
+</animation-list>

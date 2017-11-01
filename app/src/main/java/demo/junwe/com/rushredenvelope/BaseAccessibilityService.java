@@ -17,6 +17,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -140,15 +141,6 @@ public class BaseAccessibilityService extends AccessibilityService {
         performGlobalAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD);
     }
 
-    /**
-     * 查找对应文本的View
-     *
-     * @param text text
-     * @return View
-     */
-    public AccessibilityNodeInfo findViewByText(String text) {
-        return findViewByText(text, false);
-    }
 
     /**
      * 查找对应文本的View
@@ -165,10 +157,65 @@ public class BaseAccessibilityService extends AccessibilityService {
         List<AccessibilityNodeInfo> nodeInfoList = accessibilityNodeInfo.findAccessibilityNodeInfosByText(text);
         if (nodeInfoList != null && !nodeInfoList.isEmpty()) {
             for (AccessibilityNodeInfo nodeInfo : nodeInfoList) {
-                Log.e("findViewByText",nodeInfo.getText().toString());
                 if (nodeInfo != null && (nodeInfo.isClickable() == clickable)) {
                     return nodeInfo;
                 }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 查找对应文本的View
+     *
+     * @param text      text
+     * @param clickable 该View是否可以点击
+     * @return View
+     */
+    public List<AccessibilityNodeInfo> findViewListByText(String text, boolean clickable) {
+        List<AccessibilityNodeInfo> accessibilityNodeInfoList = new ArrayList<>();
+
+        AccessibilityNodeInfo accessibilityNodeInfo = getRootInActiveWindow();
+        if (accessibilityNodeInfo == null) {
+            return null;
+        }
+        List<AccessibilityNodeInfo> nodeInfoList = accessibilityNodeInfo.findAccessibilityNodeInfosByText(text);
+        if (nodeInfoList != null && !nodeInfoList.isEmpty()) {
+            for (AccessibilityNodeInfo nodeInfo : nodeInfoList) {
+                if (nodeInfo != null && (nodeInfo.isClickable() == clickable)) {
+                    accessibilityNodeInfoList.add(nodeInfo);
+                }
+            }
+        }
+        return accessibilityNodeInfoList;
+    }
+
+    /**
+     * 查找对应文本的View
+     *
+     * @param text text
+     * @return View
+     */
+    @SuppressLint("LongLogTag")
+    public AccessibilityNodeInfo findViewByTextTest(String text) {
+        AccessibilityNodeInfo accessibilityNodeInfo = getRootInActiveWindow();
+        if (accessibilityNodeInfo == null) {
+            return null;
+        }
+        int childCount = accessibilityNodeInfo.getChildCount();
+        AccessibilityNodeInfo absNode = null;
+        for (int i = 0; i < childCount; i++) {
+            AccessibilityNodeInfo child = accessibilityNodeInfo.getChild(i);
+            if ("android.widget.AbsListView".equals(child.getClassName())) {
+                absNode = child;
+            }
+        }
+        if (absNode != null) {
+            int childCount1 = absNode.getChildCount();
+            for (int i = 0; i < childCount1; i++) {
+                AccessibilityNodeInfo child = absNode.getChild(i);
+                Log.e("AbsListView", child.getClassName().toString());
             }
         }
         return null;
