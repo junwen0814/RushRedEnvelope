@@ -1,0 +1,3 @@
+# RushRedEnvelope
+Android辅助功能实现抢红包
+Android辅助功能实现抢红包
