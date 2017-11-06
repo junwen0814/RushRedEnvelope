@@ -1,4 +1,4 @@
-package demo.junwe.com.rushredenvelope;
+package demo.junwe.com.rushredenvelope.common;
 
 /**
  * Created by junwen on 2017/11/1.
@@ -20,6 +20,13 @@ public class QQConstant {
 
     //口令红包
     public static final String QQ_CLICK_PASSWORD_DIALOG = "口令红包";
+
+    //聊天页面，输入框ID
+    public static final String QQ_CHAT_MESSAGE_INPUT = "com.tencent.mobileqq:id/input";
+
+    //聊天页面，发送按钮
+    public static final String QQ_CHAT_MESSAGE_SEND = "com.tencent.mobileqq:id/fun_btn";
+
 
 
 }

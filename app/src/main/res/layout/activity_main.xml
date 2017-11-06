@@ -6,26 +6,69 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_bg"
     android:orientation="vertical"
-    tools:context="demo.junwe.com.rushredenvelope.MainActivity">
+    tools:context="demo.junwe.com.rushredenvelope.activity.MainActivity">
 
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="抢红包"
-            android:textColor="#ffffff" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/main_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/bg_main_btn_setting_shage"
+                android:text="红包设置"
+                android:textColor="@color/main_gold" />
+
+        </RelativeLayout>
+
     </android.support.v7.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/main_caishen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/main_disable_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/main_gold"
+            android:padding="10dp"
+            android:text="为了抢红包的正常运行，请点击这里到设置-辅助服务-开启抢红包服务"
+            android:textColor="#f26049"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/main_enable_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="抢红包进行中。。。。"
+            android:layout_marginTop="50dp"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/main_actionEnable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package demo.junwe.com.rushredenvelope;
+package demo.junwe.com.rushredenvelope.common;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
@@ -118,6 +118,19 @@ public class BaseAccessibilityService extends AccessibilityService {
     }
 
     /**
+     * 模拟返回操作
+     */
+    public void performBackClick(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        performGlobalAction(GLOBAL_ACTION_BACK);
+    }
+
+
+    /**
      * 模拟下滑操作
      */
     public void performScrollBackward() {
@@ -165,6 +178,25 @@ public class BaseAccessibilityService extends AccessibilityService {
         return null;
     }
 
+
+    /**
+     * 描述:粘贴文本
+     * 作者:卜俊文
+     * 邮箱:344176791@qq.com
+     * 日期:2017/11/1 下午4:18
+     */
+    public void pastaText(AccessibilityNodeInfo nodeInfo,Context context, String key) {
+        //android>21 = 5.0时可以用ACTION_SET_TEXT
+        //android>18 3.0.1可以通过复制的手段,先确定焦点，再粘贴ACTION_PASTE
+        //使用剪切板
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        //获取焦点
+        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_FOCUS);
+        //需要替换的key
+        clipboard.setPrimaryClip(ClipData.newPlainText("text", key));
+        //粘贴进入内容
+        nodeInfo.performAction(AccessibilityNodeInfo.ACTION_PASTE);
+    }
 
     /**
      * 查找对应文本的View
