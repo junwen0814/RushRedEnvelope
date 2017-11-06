@@ -27,6 +27,4 @@ public class QQConstant {
     //聊天页面，发送按钮
     public static final String QQ_CHAT_MESSAGE_SEND = "com.tencent.mobileqq:id/fun_btn";
 
-
-
 }
